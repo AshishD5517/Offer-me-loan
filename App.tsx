@@ -138,9 +138,12 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-secondary text-white mt-16 py-8">
             <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm">
-                <p className="text-gray-400 text-center sm:text-left mb-4 sm:mb-0">
-                    &copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.
-                </p>
+                <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
+                    <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
+                    <p className="mt-2">
+                        203, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, Delhi - 110034
+                    </p>
+                </div>
                 <div className="flex items-center space-x-6">
                     {socialLinks.map(link => (
                         <a key={link.name} href={link.href} className="text-gray-400 hover:text-primary transition-colors" aria-label={link.name}>
