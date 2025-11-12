@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
-import ApplyLoanModal from '../components/ApplyLoanModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
+import { useUI } from '../App';
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve namespace issue.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
@@ -79,20 +78,26 @@ const testimonials = [
 
 const LandingScreen: React.FC = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+    const { openApplyModal } = useUI();
 
     return (
         <div className="bg-gray-50">
             {isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} />}
-            {isApplyModalOpen && <ApplyLoanModal onClose={() => setIsApplyModalOpen(false)} />}
             
             {/* Hero Section */}
-            <section id="home" className="relative bg-secondary text-white">
-                <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-20" 
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
-                ></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+            <section id="home" className="relative bg-secondary text-white overflow-hidden">
+                 <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    src="https://videos.pexels.com/video-files/8254536/8254536-hd.mp4"
+                    key="hero-video"
+                >
+                    Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 bg-secondary/80 z-1"></div>
                 
                 <div className="relative container mx-auto px-6 py-32 text-center z-10">
                     <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
@@ -103,7 +108,7 @@ const LandingScreen: React.FC = () => {
                     </p>
                     <div className="flex justify-center space-x-4">
                         <button 
-                            onClick={() => setIsApplyModalOpen(true)}
+                            onClick={openApplyModal}
                             className="px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105"
                         >
                             I'm a Borrower
@@ -163,11 +168,11 @@ const LandingScreen: React.FC = () => {
                         You've explored the possibilities. Now, let's connect you with lenders who can make it happen. Our simple application takes just minutes.
                     </p>
                     <button 
-                        onClick={() => setIsApplyModalOpen(true)}
-                        className="inline-flex items-center space-x-3 px-10 py-4 bg-primary text-white text-lg font-bold rounded-full shadow-2xl hover:bg-primary-dark transition-all duration-300 transform hover:scale-110 animate-pulse-slow cursor-pointer"
+                        onClick={openApplyModal}
+                        className="group inline-flex items-center justify-center space-x-3 px-10 py-4 bg-gradient-to-r from-primary via-accent to-primary text-white text-lg font-bold rounded-full shadow-lg hover:shadow-xl hover:shadow-primary/40 transition-all duration-500 bg-200% bg-pos-0 hover:bg-pos-100"
                     >
                         <span>Apply for a Loan Now</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </button>
@@ -247,7 +252,7 @@ const LandingScreen: React.FC = () => {
             <section id="mobile-app" className="relative py-20 overflow-hidden">
                  <div 
                     className="absolute inset-0 bg-cover bg-center opacity-20"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1561414927-6d86591d0c4f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+                    style={{ backgroundImage: "url('https://chatgpt.com/backend-api/estuary/content?id=file_00000000f25471faaec6ddc6b6129bbf&ts=489706&p=fs&cid=1&sig=2a2621bbec1057c76b71b70f4fe4d1747306a74837759fed471b3e8c94374b56&v=0')" }}
                 ></div>
                 <div className="absolute inset-0 bg-white/80"></div>
 
@@ -281,7 +286,7 @@ const LandingScreen: React.FC = () => {
                                     <div className="h-[36px] w-[2px] bg-gray-300 absolute -start-[10px] top-[148px] rounded-s-lg"></div>
                                     <div className="h-[52px] w-[2px] bg-gray-300 absolute -end-[10px] top-[114px] rounded-e-lg"></div>
                                     <div className="rounded-[1.5rem] overflow-hidden w-full h-full bg-white">
-                                        <img src="https://i.imgur.com/v8iFjXb.png" className="w-full h-full object-cover" alt="Offer Me Loan App Calculator Screen"/>
+                                        <img src="https://i.imgur.com/pYm5g5b.png" className="w-full h-full object-cover" alt="Offer Me Loan mobile app showing a loan application status screen"/>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +299,7 @@ const LandingScreen: React.FC = () => {
                                     <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[178px] rounded-s-lg"></div>
                                     <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
                                     <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
-                                        <img src="https://i.imgur.com/iR3f4Ow.png" className="w-full h-full object-cover" alt="Offer Me Loan Application Screen"/>
+                                        <img src="https://i.imgur.com/pYm5g5b.png" className="w-full h-full object-cover" alt="Offer Me Loan mobile app showing a loan application status screen"/>
                                     </div>
                                 </div>
                             </div>

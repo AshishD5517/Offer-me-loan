@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import type { LoanRequest, Offer } from '../types';
 import { LoanStatus } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import ApplyLoanModal from '../components/ApplyLoanModal';
 import ContactUsSection from '../components/ContactUsSection';
+import { useUI } from '../App';
 
 const mockOffers: Offer[] = [
     { id: 'offer-1', agentId: 'agent-456', agentName: 'Jane Smith', agentAvatarUrl: 'https://i.pravatar.cc/150?u=jane', loanRequestId: 'loan-1', offeredRate: 5.2, processingFee: 5000, message: "Hi Alex, I can offer a competitive rate for your home improvement project. My processing is fast and transparent.", dateOffered: '2023-10-27' },
@@ -174,7 +174,7 @@ const BorrowerDashboardSkeleton: React.FC = () => (
 
 const BorrowerDashboard: React.FC = () => {
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
-    const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+    const { openApplyModal } = useUI();
     const [isLoading, setIsLoading] = useState(true);
     const [expandedRequestId, setExpandedRequestId] = useState<string | null>(null);
 
@@ -197,11 +197,10 @@ const BorrowerDashboard: React.FC = () => {
     return (
         <>
             <div className="container mx-auto px-6 py-8">
-                {isApplyModalOpen && <ApplyLoanModal onClose={() => setIsApplyModalOpen(false)} />}
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-secondary">My Dashboard</h1>
                     <button 
-                        onClick={() => setIsApplyModalOpen(true)}
+                        onClick={openApplyModal}
                         className="px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105"
                     >
                         New Loan Request

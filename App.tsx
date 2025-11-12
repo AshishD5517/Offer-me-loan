@@ -8,6 +8,8 @@ import BorrowerDashboard from './screens/BorrowerDashboard';
 import AgentDashboard from './screens/AgentDashboard';
 import ComingSoonScreen from './screens/ComingSoonScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
+import Chatbot from './components/Chatbot';
+import ApplyLoanModal from './components/ApplyLoanModal';
 
 interface AuthContextType {
   user: User | null;
@@ -25,12 +27,51 @@ export const useAuth = () => {
   return context;
 };
 
+// --- NEW UI CONTEXT ---
+interface UIContextType {
+  openApplyModal: () => void;
+}
+
+const UIContext = createContext<UIContextType | null>(null);
+
+export const useUI = () => {
+  const context = useContext(UIContext);
+  if (!context) {
+    throw new Error('useUI must be used within a UIProvider');
+  }
+  return context;
+}
+// --- END NEW UI CONTEXT ---
+
+
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4Z" fill="#00C49F" />
-        <path d="M24 14L34 24L24 34L14 24L24 14Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M24 24V34" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M14 24H34" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg className={className} viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00C49F" />
+                <stop offset="100%" stopColor="#00a182" />
+            </linearGradient>
+            <filter id="logo-shadow" x="-5%" y="-10%" width="110%" height="130%">
+                <feDropShadow dx="1" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.15"/>
+            </filter>
+        </defs>
+        <g filter="url(#logo-shadow)">
+            {/* Background */}
+            <rect width="220" height="52" rx="12" fill="url(#logo-gradient)"/>
+            
+            {/* Icon Part - scaled down and positioned on the left */}
+            <g transform="translate(13, 13) scale(0.5)">
+                {/* Using the same paths from before, just scaled */}
+                <path d="M18 14C18 13.4477 18.4477 13 19 13H31L36 18V38C36 38.5523 35.5523 39 35 39H19C18.4477 39 18 38.5523 18 38V14Z" fill="white" fillOpacity="0.9"/>
+                <path d="M31 13L36 18H31V13Z" fill="white" fillOpacity="0.5"/>
+                <path d="M22 27L26 31L34 23" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+             
+            {/* Text Part */}
+            <text x="55" y="35" fontFamily="Inter, sans-serif" fontSize="20" fontWeight="bold" fill="white">
+                Offer Me Loan
+            </text>
+        </g>
     </svg>
 );
 
@@ -60,12 +101,11 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-30 py-3 bg-gray-50">
+            <header className="relative z-30 py-4 bg-gray-50">
                  <div className="container mx-auto px-6">
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center space-x-2">
-                            <LogoIcon className="h-8 w-8" />
-                            <span className="text-xl font-bold text-secondary">Offer Me Loan</span>
+                        <a href={`${linkPrefix}#home`} className="flex items-center">
+                            <LogoIcon className="h-12" />
                         </a>
                         
                         <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-4 py-2">
@@ -211,17 +251,41 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   );
 };
 
+// --- NEW UI PROVIDER ---
+const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  
+  const openApplyModal = useCallback(() => {
+    setIsApplyModalOpen(true);
+  }, []);
+
+  const closeApplyModal = useCallback(() => {
+    setIsApplyModalOpen(false);
+  }, []);
+
+  return (
+    <UIContext.Provider value={{ openApplyModal }}>
+      {children}
+      {isApplyModalOpen && <ApplyLoanModal onClose={closeApplyModal} />}
+    </UIContext.Provider>
+  );
+};
+// --- END NEW UI PROVIDER ---
+
 
 export default function App() {
     return (
         <AuthProvider>
-            <div className="min-h-screen flex flex-col font-sans">
-                <Header />
-                <main className="flex-grow">
-                    <AppContent />
-                </main>
-                <Footer />
-            </div>
+            <UIProvider>
+                <div className="min-h-screen flex flex-col font-sans">
+                    <Header />
+                    <main className="flex-grow">
+                        <AppContent />
+                    </main>
+                    <Footer />
+                    <Chatbot />
+                </div>
+            </UIProvider>
         </AuthProvider>
     );
 }
