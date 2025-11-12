@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import ApplyLoanModal from '../components/ApplyLoanModal';
@@ -245,48 +246,61 @@ const LandingScreen: React.FC = () => {
             {/* Mobile App Section */}
             <section id="mobile-app" className="relative py-20 overflow-hidden">
                  <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-10"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+                    className="absolute inset-0 bg-cover bg-center opacity-20"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1561414927-6d86591d0c4f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
                 ></div>
-                <div className="absolute inset-0 bg-white/95"></div>
+                <div className="absolute inset-0 bg-white/80"></div>
 
-                <div className="relative container mx-auto px-6 z-10">
-                    <div className="text-center">
-                        <h2 className="text-3xl font-bold text-secondary mb-4">Manage Your Loans On The Go</h2>
-                        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                <div className="relative container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="text-center lg:text-left">
+                        <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">Manage Your Loans On The Go</h2>
+                        <p className="text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
                             Get our mobile app for a seamless and convenient loan management experience. Track your applications, get instant notifications, and connect with agents right from your pocket.
                         </p>
-                    </div>
-                    
-                    <div className="flex justify-center mt-12">
-                        {/* Phone mockup */}
-                        <div className="relative mx-auto border-gray-800 bg-gray-800 border-[10px] rounded-[2.5rem] h-[550px] w-[270px] shadow-2xl transition-transform transform hover:scale-105 duration-300">
-                            <div className="w-[140px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
-                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[124px] rounded-s-lg"></div>
-                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[178px] rounded-s-lg"></div>
-                            <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
-                            <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1628226426343-33bfd82089f2?q=80&w=800&auto=format=fit=crop" 
-                                    className="w-full h-full object-cover" 
-                                    alt="Offer Me Loan App Screenshot"
-                                />
-                            </div>
+                        <div className="flex space-x-4 justify-center lg:justify-start">
+                            <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor" viewBox="0 0 384 512">
+                                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C39.2 141.1 0 183.1 0 241.2c0 61.6 43.1 113.7 103.1 113.7 20.2 0 45.4-14.5 73.1-14.5 27.6 0 52.2 14.5 73.8 14.5 58.1 0 104.4-50.5 104.4-113.7 0-27.9-10.6-54.4-29.7-74.2zm-155.6-141.3c3-11.2 10.3-21.6 20.2-27.7 10.1-6.1 21.6-8.1 31.9-5.1 1.9 11.2-4.5 24.3-14.5 30.5-10.1 6-22.1 7.9-32.1 5.1-1.3-2.1-2.4-4.2-2.9-7.3z"/>
+                            </svg>
+                                <span>App Store</span>
+                            </a>
+                            <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 32 32"><path fill="currentColor" d="M29.5,13.2L4.6,0.3c-1.1-0.6-2.5,0.4-2.5,1.6v27.9c0,1.2,1.4,2.2,2.5,1.6l24.9-12.8C30.6,17.9,30.6,14.1,29.5,13.2z M22,20.9l-10.2-3l-0.1,6.1L22,20.9z M11.7,14.1l10.2-3L11.8,8L11.7,14.1z M4,4.2l6.8,3.5l0.1,16.5L4,27.7V4.2z M23.9,15.9 L23.9,15.9l-11,3.2L24,12.7L23.9,15.9z"></path></svg>
+                                <span>Google Play</span>
+                            </a>
                         </div>
                     </div>
                     
-                    <div className="flex space-x-4 justify-center mt-12">
-                        <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor" viewBox="0 0 384 512">
-                            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C39.2 141.1 0 183.1 0 241.2c0 61.6 43.1 113.7 103.1 113.7 20.2 0 45.4-14.5 73.1-14.5 27.6 0 52.2 14.5 73.8 14.5 58.1 0 104.4-50.5 104.4-113.7 0-27.9-10.6-54.4-29.7-74.2zm-155.6-141.3c3-11.2 10.3-21.6 20.2-27.7 10.1-6.1 21.6-8.1 31.9-5.1 1.9 11.2-4.5 24.3-14.5 30.5-10.1 6-22.1 7.9-32.1 5.1-1.3-2.1-2.4-4.2-2.9-7.3z"/>
-                        </svg>
-                            <span>App Store</span>
-                        </a>
-                        <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 32 32"><path fill="currentColor" d="M29.5,13.2L4.6,0.3c-1.1-0.6-2.5,0.4-2.5,1.6v27.9c0,1.2,1.4,2.2,2.5,1.6l24.9-12.8C30.6,17.9,30.6,14.1,29.5,13.2z M22,20.9l-10.2-3l-0.1,6.1L22,20.9z M11.7,14.1l10.2-3L11.8,8L11.7,14.1z M4,4.2l6.8,3.5l0.1,16.5L4,27.7V4.2z M23.9,15.9 L23.9,15.9l-11,3.2L24,12.7L23.9,15.9z"></path></svg>
-                            <span>Google Play</span>
-                        </a>
+                    <div className="flex justify-center lg:justify-end items-center mt-12 lg:mt-0 min-h-[550px]">
+                        <div className="relative w-[320px] h-[550px] lg:w-[480px]">
+                            {/* Phone 1 (Back) */}
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-[70%] -translate-y-1/2 -rotate-15 transition-transform duration-500 hover:rotate-[-20deg] hover:scale-105">
+                                <div className="relative mx-auto border-gray-300 bg-gray-300 border-[8px] rounded-[2rem] h-[450px] w-[220px] lg:h-[550px] lg:w-[270px] shadow-xl">
+                                    <div className="w-[100px] h-[14px] bg-gray-300 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+                                    <div className="h-[36px] w-[2px] bg-gray-300 absolute -start-[10px] top-[100px] rounded-s-lg"></div>
+                                    <div className="h-[36px] w-[2px] bg-gray-300 absolute -start-[10px] top-[148px] rounded-s-lg"></div>
+                                    <div className="h-[52px] w-[2px] bg-gray-300 absolute -end-[10px] top-[114px] rounded-e-lg"></div>
+                                    <div className="rounded-[1.5rem] overflow-hidden w-full h-full bg-white">
+                                        <img src="https://i.imgur.com/v8iFjXb.png" className="w-full h-full object-cover" alt="Offer Me Loan App Calculator Screen"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Phone 2 (Front) */}
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-[30%] -translate-y-1/2 rotate-15 z-10 transition-transform duration-500 hover:rotate-[20deg] hover:scale-105">
+                                <div className="relative mx-auto border-gray-800 bg-gray-800 border-[10px] rounded-[2.5rem] h-[500px] w-[250px] lg:h-[600px] lg:w-[300px] shadow-2xl">
+                                    <div className="w-[120px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+                                    <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[124px] rounded-s-lg"></div>
+                                    <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[178px] rounded-s-lg"></div>
+                                    <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
+                                    <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
+                                        <img src="https://i.imgur.com/iR3f4Ow.png" className="w-full h-full object-cover" alt="Offer Me Loan Application Screen"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
