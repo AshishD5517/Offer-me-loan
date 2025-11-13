@@ -30,30 +30,9 @@ const MakeOfferModal: React.FC<MakeOfferModalProps> = ({ loanRequest, onClose, o
     return (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50" onClick={onClose}>
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 m-4 transform transition-all duration-300" onClick={(e) => e.stopPropagation()}>
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-secondary">Make an Offer</h2>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-3xl leading-none">&times;</button>
-                </div>
-
-                <div className="bg-primary-light p-4 rounded-lg mb-6 text-sm">
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                        <div>
-                            <p className="text-gray-600">Borrower:</p>
-                            <p className="font-semibold text-secondary">{loanRequest.borrowerName}</p>
-                        </div>
-                        <div>
-                            <p className="text-gray-600">Loan Amount:</p>
-                            <p className="font-semibold text-secondary">{formatCurrency(loanRequest.amount)}</p>
-                        </div>
-                         <div>
-                            <p className="text-gray-600">Purpose:</p>
-                            <p className="font-semibold text-secondary">{loanRequest.purpose}</p>
-                        </div>
-                         <div>
-                            <p className="text-gray-600">Credit Score:</p>
-                            <p className="font-semibold text-secondary">{loanRequest.creditScore}</p>
-                        </div>
-                    </div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">

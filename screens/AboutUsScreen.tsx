@@ -10,6 +10,39 @@ const FeatureCard: React.FC<{ imageUrl: string; title: string; description: stri
     </div>
 );
 
+const teamMembers = [
+    {
+        name: 'Aarav Sharma',
+        role: 'Founder & CEO',
+        imageUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        name: 'Diya Patel',
+        role: 'Chief Technology Officer',
+        imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        name: 'Rohan Mehta',
+        role: 'Head of Operations',
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        name: 'Sneha Verma',
+        role: 'Lead Marketing Strategist',
+        imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
+    },
+];
+
+const TeamMemberCard: React.FC<{ name: string; role: string; imageUrl: string; }> = ({ name, role, imageUrl }) => (
+    <div className="text-center group">
+        <div className="relative w-40 h-40 mx-auto mb-4">
+            <img src={imageUrl} alt={name} className="rounded-full w-full h-full object-cover shadow-lg border-4 border-white transform group-hover:scale-110 transition-transform duration-300" />
+        </div>
+        <h3 className="text-lg font-bold text-secondary">{name}</h3>
+        <p className="text-primary">{role}</p>
+    </div>
+);
+
 
 const AboutUsScreen: React.FC = () => {
     return (
@@ -96,6 +129,21 @@ const AboutUsScreen: React.FC = () => {
                             title="Personalized Support"
                             description="Our platform and partner agents are here to help you navigate your financial journey, offering support when you need it."
                         />
+                    </div>
+                </div>
+            </section>
+
+            {/* Meet the Team Section */}
+            <section className="py-20 bg-primary-light">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-secondary">Meet Our Team</h2>
+                        <p className="text-gray-600 mt-2">The passionate individuals behind Offer Me Loan.</p>
+                    </div>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {teamMembers.map((member) => (
+                            <TeamMemberCard key={member.name} {...member} />
+                        ))}
                     </div>
                 </div>
             </section>
