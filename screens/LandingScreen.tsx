@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
@@ -252,7 +253,7 @@ const LandingScreen: React.FC = () => {
             <section id="mobile-app" className="relative py-20 overflow-hidden">
                  <div 
                     className="absolute inset-0 bg-cover bg-center opacity-20"
-                    style={{ backgroundImage: "url('https://chatgpt.com/backend-api/estuary/content?id=file_00000000f25471faaec6ddc6b6129bbf&ts=489706&p=fs&cid=1&sig=2a2621bbec1057c76b71b70f4fe4d1747306a74837759fed471b3e8c94374b56&v=0')" }}
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1563986768494-4dee46a385bd?q=80&w=2070&auto=format&fit=crop')" }}
                 ></div>
                 <div className="absolute inset-0 bg-white/80"></div>
 
@@ -286,7 +287,7 @@ const LandingScreen: React.FC = () => {
                                     <div className="h-[36px] w-[2px] bg-gray-300 absolute -start-[10px] top-[148px] rounded-s-lg"></div>
                                     <div className="h-[52px] w-[2px] bg-gray-300 absolute -end-[10px] top-[114px] rounded-e-lg"></div>
                                     <div className="rounded-[1.5rem] overflow-hidden w-full h-full bg-white">
-                                        <img src="https://i.imgur.com/pYm5g5b.png" className="w-full h-full object-cover" alt="Offer Me Loan mobile app showing a loan application status screen"/>
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover" alt="Mobile app dashboard with charts" />
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +300,7 @@ const LandingScreen: React.FC = () => {
                                     <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[178px] rounded-s-lg"></div>
                                     <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
                                     <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
-                                        <img src="https://i.imgur.com/pYm5g5b.png" className="w-full h-full object-cover" alt="Offer Me Loan mobile app showing a loan application status screen"/>
+                                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop" className="w-full h-full object-cover" alt="Loan application screen with financial data" />
                                     </div>
                                 </div>
                             </div>
