@@ -252,10 +252,10 @@ const LandingScreen: React.FC = () => {
             {/* Mobile App Section */}
             <section id="mobile-app" className="relative py-20 overflow-hidden">
                  <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-20"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1563986768494-4dee46a385bd?q=80&w=2070&auto=format&fit=crop')" }}
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')" }}
                 ></div>
-                <div className="absolute inset-0 bg-white/80"></div>
+                <div className="absolute inset-0 bg-white/90"></div>
 
                 <div className="relative container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 items-center">
                     <div className="text-center lg:text-left">
@@ -331,3 +331,4 @@ const LandingScreen: React.FC = () => {
 };
 
 export default LandingScreen;
+    
