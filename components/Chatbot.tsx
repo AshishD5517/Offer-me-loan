@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI, Chat } from '@google/genai';
+import { GoogleGenAI, Chat, GenerateContentResponse } from '@google/genai';
 
 type Message = {
     id: number;
@@ -53,6 +54,7 @@ const Chatbot: React.FC = () => {
     const [userInput, setUserInput] = useState('');
     const chatRef = useRef<Chat | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const hasInitialized = useRef(false);
     
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -64,6 +66,9 @@ const Chatbot: React.FC = () => {
 
     // Initialize Chat
     useEffect(() => {
+        if (hasInitialized.current) return;
+        hasInitialized.current = true;
+
         const initChat = async () => {
             try {
                 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
@@ -121,11 +126,16 @@ const Chatbot: React.FC = () => {
             setMessages(prev => [...prev, { id: botMessageId, type: 'bot', text: '' }]);
 
             for await (const chunk of stream) {
-                botResponseText += chunk.text;
-                // Update the bot message in the stream
-                setMessages(prev => prev.map(msg => 
-                    msg.id === botMessageId ? { ...msg, text: botResponseText } : msg
-                ));
+                const responseChunk = chunk as GenerateContentResponse;
+                const text = responseChunk.text;
+                
+                if (text) {
+                    botResponseText += text;
+                    // Update the bot message in the stream
+                    setMessages(prev => prev.map(msg => 
+                        msg.id === botMessageId ? { ...msg, text: botResponseText } : msg
+                    ));
+                }
             }
         } catch (error) {
             console.error("Error sending message:", error);
