@@ -1,237 +1,165 @@
 
 import React from 'react';
 
-// Icons
-const CheckIcon = () => (
-    <svg className="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-);
-
-const ValueCard: React.FC<{ title: string; description: string; icon: React.ReactNode }> = ({ title, description, icon }) => (
-    <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-primary hover:-translate-y-1 transition-transform duration-300 h-full">
-        <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center text-primary mb-6">
-            {icon}
-        </div>
-        <h3 className="text-xl font-bold text-secondary mb-3">{title}</h3>
-        <p className="text-gray-600 leading-relaxed">
-            {description}
-        </p>
-    </div>
-);
-
-const TeamMemberCard: React.FC<{ name: string; role: string; imageUrl: string; bio: string }> = ({ name, role, imageUrl, bio }) => (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
-        <div className="h-80 overflow-hidden relative group">
-            <img src={imageUrl} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-white font-medium">Connect on LinkedIn</p>
-            </div>
-        </div>
-        <div className="p-6 flex-grow flex flex-col">
-            <h3 className="text-xl font-bold text-secondary">{name}</h3>
-            <p className="text-primary font-medium mb-4 text-sm uppercase tracking-wide">{role}</p>
-            <p className="text-gray-600 text-sm leading-relaxed">{bio}</p>
-        </div>
-    </div>
-);
-
-const StatItem: React.FC<{ value: string; label: string }> = ({ value, label }) => (
-    <div className="text-center p-6 border-r border-gray-200 last:border-0">
-        <p className="text-4xl md:text-5xl font-extrabold text-primary mb-2">{value}</p>
-        <p className="text-gray-500 font-medium uppercase tracking-widest text-sm">{label}</p>
-    </div>
-);
-
 const AboutUsScreen: React.FC = () => {
     return (
-        <div className="bg-gray-50 animate-fade-in-up">
-            {/* Hero Section */}
-            <section className="relative bg-secondary py-32 overflow-hidden">
-                 <div className="absolute inset-0">
-                    <img 
-                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop" 
-                        alt="Team meeting" 
-                        className="w-full h-full object-cover opacity-10" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-secondary/60 to-secondary"></div>
+        <div className="bg-gray-50 font-sans text-gray-700 animate-fade-in-up">
+             {/* 1. Welcoming Introduction (Hero) */}
+             <section className="relative py-24 bg-gradient-to-br from-secondary to-gray-900 text-white overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop" alt="People connecting" className="w-full h-full object-cover" />
                 </div>
-                <div className="relative container mx-auto px-6 text-center z-10">
-                    <span className="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary font-semibold text-sm mb-6 backdrop-blur-sm border border-primary/30 uppercase tracking-wider">
-                        About Offer Me Loan
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                        Simplifying Finance, <br className="hidden md:block" /> <span className="text-primary">Amplifying Possibilities.</span>
+                <div className="container mx-auto px-6 relative z-10 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        Welcome to <span className="text-primary">Offer Me Loan</span>
                     </h1>
-                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
-                        We are India's fastest-growing digital lending marketplace, dedicated to making credit accessible, transparent, and hassle-free for everyone.
+                    <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200 font-light leading-relaxed">
+                        Bridging the gap between dreams and reality through accessible, transparent, and fair financial solutions. We are redefining how India borrows.
                     </p>
                 </div>
-            </section>
+             </section>
 
-            {/* Stats Section */}
-            <section className="bg-white border-b border-gray-200 relative z-20 -mt-10 mx-6 md:mx-auto max-w-6xl rounded-xl shadow-xl p-4">
-                <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-200">
-                    <StatItem value="50k+" label="Active Users" />
-                    <StatItem value="₹100Cr+" label="Loans Disbursed" />
-                    <StatItem value="500+" label="Verified Agents" />
-                    <StatItem value="98%" label="Satisfaction Rate" />
-                </div>
-            </section>
-
-            {/* Detailed Story Section */}
-            <section className="py-24 bg-white">
+             {/* 2. Our Mission & 3. Our Vision */}
+             <section className="py-20 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                         <div className="relative order-2 md:order-1">
-                            <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full z-0"></div>
-                            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full z-0"></div>
-                            <img 
-                                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop" 
-                                alt="Business analysis" 
-                                className="relative rounded-2xl shadow-2xl w-full z-10 object-cover h-[500px]"
-                            />
-                             <div className="absolute top-1/2 -left-10 transform -translate-y-1/2 bg-white p-6 rounded-xl shadow-xl z-20 hidden lg:block max-w-xs border-l-4 border-accent">
-                                <p className="text-secondary font-bold text-lg italic">"We don't just connect you to lenders; we connect you to your future."</p>
-                            </div>
-                        </div>
-                        <div className="order-1 md:order-2">
-                            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">Who We Are</h2>
-                            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                                <strong>Offer Me Loan</strong> was born out of a simple yet powerful idea: getting a loan shouldn't be complicated. In a market flooded with paperwork, hidden fees, and endless waiting periods, we saw an opportunity to build a bridge.
-                            </p>
-                            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                                We are a technology-first platform that connects borrowers directly with a diverse network of loan agents and financial institutions. By removing traditional bottlenecks, we empower you to compare offers, negotiate terms, and secure funding faster than ever before. Whether you are a salaried professional, a business owner, or a student, we have a solution tailored for you.
-                            </p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="flex items-center text-gray-700 font-medium bg-gray-50 p-3 rounded-lg">
-                                    <CheckIcon /> <span>100% Digital Process</span>
-                                </div>
-                                <div className="flex items-center text-gray-700 font-medium bg-gray-50 p-3 rounded-lg">
-                                    <CheckIcon /> <span>Secure Data Encryption</span>
-                                </div>
-                                <div className="flex items-center text-gray-700 font-medium bg-gray-50 p-3 rounded-lg">
-                                    <CheckIcon /> <span>No Hidden Charges</span>
-                                </div>
-                                <div className="flex items-center text-gray-700 font-medium bg-gray-50 p-3 rounded-lg">
-                                    <CheckIcon /> <span>24/7 Support</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Mission & Vision */}
-            <section className="py-24 bg-secondary text-white relative overflow-hidden">
-                {/* Abstract Shapes */}
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 transform origin-top-right"></div>
-                
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold">Our Purpose</h2>
-                        <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Driving financial inclusion through technology and trust.</p>
-                    </div>
                     <div className="grid md:grid-cols-2 gap-12">
-                        <div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors group">
-                            <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4 text-primary-light">Our Mission</h3>
-                            <p className="text-gray-300 leading-relaxed text-lg">
-                                To democratize access to credit by providing a transparent, efficient, and secure marketplace. We aim to empower every borrower with choice and every agent with opportunity, fostering financial well-being for all.
+                        <div className="p-10 bg-primary-light/30 rounded-3xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow">
+                            <h2 className="text-3xl font-bold text-secondary mb-6 flex items-center">
+                                <span className="w-2 h-8 bg-primary mr-4 rounded-full"></span>
+                                Our Mission
+                            </h2>
+                            <p className="text-lg leading-relaxed text-gray-700">
+                                To democratize the lending landscape by creating a seamless marketplace where borrowers find fair rates and agents find genuine leads. We strive to eliminate the complexities of traditional banking through technology and trust, ensuring financial inclusion for all.
                             </p>
                         </div>
-                        <div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/10 hover:bg-white/20 transition-colors group">
-                            <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                                <svg className="w-8 h-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4 text-accent">Our Vision</h3>
-                            <p className="text-gray-300 leading-relaxed text-lg">
-                                To become India's most trusted financial ecosystem, where getting a loan is as simple as sending a message. We envision a future where financial barriers no longer stand in the way of dreams.
+                        <div className="p-10 bg-accent/10 rounded-3xl border border-accent/10 shadow-sm hover:shadow-md transition-shadow">
+                            <h2 className="text-3xl font-bold text-secondary mb-6 flex items-center">
+                                <span className="w-2 h-8 bg-accent mr-4 rounded-full"></span>
+                                Our Vision
+                            </h2>
+                            <p className="text-lg leading-relaxed text-gray-700">
+                                To be India's most preferred and trusted financial connection platform, fostering a world where financial opportunities are accessible to everyone, regardless of their background or location. We envision a future where getting a loan is as simple as sending a message.
                             </p>
                         </div>
                     </div>
                 </div>
-            </section>
+             </section>
 
-            {/* Core Values */}
-            <section className="py-24 bg-gray-50">
+             {/* 4. Our Values */}
+             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-6">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Core Values That Drive Us</h2>
-                        <p className="text-gray-600">
-                            Our culture is built on a foundation of trust and excellence. These values guide every decision we make.
-                        </p>
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-secondary">Our Core Values</h2>
+                        <p className="text-gray-500 mt-2 text-lg">The principles that guide every interaction and decision.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <ValueCard 
-                            title="Integrity First" 
-                            description="We believe in doing the right thing, even when no one is watching. Honesty and ethical conduct are non-negotiable for us and our partners."
-                            icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>}
-                        />
-                        <ValueCard 
-                            title="Customer Obsession" 
-                            description="Our users are at the heart of everything we do. We strive to solve their problems with speed, empathy, and effectiveness."
-                            icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>}
-                        />
-                        <ValueCard 
-                            title="Innovation" 
-                            description="We embrace technology to simplify the complex. We are constantly evolving to provide a smarter, faster borrowing experience."
-                            icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>}
-                        />
+                        {[
+                            { title: "Integrity", desc: "We uphold the highest standards of honesty and ethical behavior. Trust is our currency." },
+                            { title: "Transparency", desc: "No hidden fees, no fine print surprises. Everything is clear from day one." },
+                            { title: "Empathy", desc: "We understand that behind every loan request is a human story, a family, and a dream." },
+                            { title: "Innovation", desc: "We constantly evolve our technology to make borrowing faster, safer, and smarter." },
+                            { title: "Security", desc: "Protecting your data is paramount. We use bank-grade encryption to keep your information safe." },
+                            { title: "Collaboration", desc: "We believe in the power of community, connecting people to help each other grow." }
+                        ].map((val, idx) => (
+                            <div key={idx} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-transparent hover:border-primary">
+                                <h3 className="text-xl font-bold text-secondary mb-3">{val.title}</h3>
+                                <p className="text-gray-600 leading-relaxed">{val.desc}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </section>
+             </section>
 
-             {/* Meet The Team Section */}
-            <section className="py-24 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <span className="text-primary font-bold tracking-wider uppercase text-sm">The Minds Behind The Mission</span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-secondary mt-2">Meet Our Leadership</h2>
-                        <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-                            A team of passionate individuals committed to revolutionizing the lending industry in India.
+             {/* 5. What Makes Us Unique */}
+             <section className="py-24 bg-secondary text-white relative overflow-hidden">
+                 {/* Decorative circles */}
+                 <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary rounded-full opacity-20 blur-3xl"></div>
+                 <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-accent rounded-full opacity-20 blur-3xl"></div>
+                 
+                 <div className="container mx-auto px-6 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <span className="text-primary font-bold tracking-wider uppercase mb-2 block">Why We Stand Out</span>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">What Makes Us Unique?</h2>
+                            <div className="space-y-8">
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-xl flex items-center justify-center mr-6 shadow-lg shadow-primary/30">
+                                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xl font-bold text-white mb-2">Reverse Auction Model</h4>
+                                        <p className="text-gray-300 leading-relaxed">Unlike traditional models where you chase banks, here lenders compete for your request. You sit back and watch the offers come to you.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-12 h-12 bg-accent rounded-xl flex items-center justify-center mr-6 shadow-lg shadow-accent/30">
+                                        <svg className="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xl font-bold text-white mb-2">AI-Powered Matching</h4>
+                                        <p className="text-gray-300 leading-relaxed">Our smart algorithms instantly analyze your profile and connect you with agents who specialize in your specific loan type and credit history.</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center mr-6 shadow-lg">
+                                        <svg className="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xl font-bold text-white mb-2">End-to-End Privacy</h4>
+                                        <p className="text-gray-300 leading-relaxed">We value your privacy. Your personal data is encrypted and shared only with the agent you explicitly choose to work with.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent opacity-20 rounded-2xl transform rotate-6 scale-105"></div>
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Unique features" className="relative rounded-2xl shadow-2xl object-cover h-full w-full transform transition-transform hover:scale-105 duration-500" />
+                        </div>
+                    </div>
+                 </div>
+             </section>
+
+             {/* 6. Our Story */}
+             <section className="py-24 bg-white">
+                 <div className="container mx-auto px-6 max-w-4xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Story</h2>
+                        <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+                    </div>
+                    <div className="prose prose-lg mx-auto text-gray-600 text-justify leading-loose">
+                        <p className="mb-6">
+                            It all started in 2023, when our founders realized a critical gap in the Indian lending market. While there were many banks and apps, the process was still opaque, slow, and impersonal. Borrowers were often rejected without reason, and agents struggled to find genuine leads.
+                        </p>
+                        <p className="mb-6">
+                            <strong>Offer Me Loan</strong> was conceived as the solution to this disconnect. We envisioned a platform that wasn't just a directory, but an active marketplace. A place where technology empowers human connection, rather than replacing it.
+                        </p>
+                        <p>
+                            From a small team in Delhi to a nationwide network, our journey has been fueled by one singular goal: to make finance friendly. Today, we are proud to have helped thousands of individuals and businesses achieve their financial goals with dignity and ease. We are not just a platform; we are your partner in progress.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                         <TeamMemberCard 
-                            name="Aarav Sharma" 
-                            role="Founder & CEO" 
-                            imageUrl="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop"
-                            bio="With over 15 years in fintech, Aarav envisioned a platform that removes the friction from borrowing. He leads the company with a focus on transparency and user-centric innovation."
-                         />
-                         <TeamMemberCard 
-                            name="Priya Patel" 
-                            role="Chief Operating Officer" 
-                            imageUrl="https://images.unsplash.com/photo-1573496359-136d47552640?q=80&w=800&auto=format&fit=crop"
-                            bio="Priya brings a wealth of experience in operational excellence. She ensures that every loan application is processed smoothly and that our network of agents remains top-tier."
-                         />
-                         <TeamMemberCard 
-                            name="Rohan Gupta" 
-                            role="Head of Technology" 
-                            imageUrl="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop"
-                            bio="A tech visionary, Rohan architects the secure and scalable systems that power Offer Me Loan. He is passionate about using AI to better match borrowers with lenders."
-                         />
-                    </div>
-                </div>
-            </section>
+                 </div>
+             </section>
 
-            {/* Call to Action */}
-            <section className="py-24 bg-gradient-to-r from-primary to-primary-dark text-center">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Write Your Financial Story?</h2>
-                    <p className="text-white/90 text-xl mb-10 max-w-2xl mx-auto">
+             {/* 7. Call to Action */}
+             <section className="py-24 bg-primary-light relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full opacity-50 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#00C49F 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+                <div className="container mx-auto px-6 text-center relative z-10">
+                    <h2 className="text-3xl md:text-5xl font-bold text-secondary mb-6">Ready to Write Your Financial Story?</h2>
+                    <p className="text-gray-600 text-xl mb-10 max-w-2xl mx-auto">
                         Join thousands of satisfied users who found the perfect loan through our platform. It takes less than 5 minutes to get started.
                     </p>
-                    <a 
-                        href="/#apply-now" 
-                        className="inline-block bg-white text-primary font-bold text-lg py-4 px-10 rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                    >
-                        Get Started Today
-                    </a>
+                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="/#apply-now" className="inline-block px-10 py-4 bg-secondary text-white font-bold rounded-full shadow-xl hover:bg-secondary/90 hover:shadow-2xl transition-all transform hover:-translate-y-1">
+                            Get Started Now
+                        </a>
+                        <a href="/contact-us" className="inline-block px-10 py-4 bg-white text-secondary font-bold rounded-full shadow-md border border-gray-200 hover:bg-gray-50 transition-all transform hover:-translate-y-1">
+                            Contact Support
+                        </a>
+                    </div>
                 </div>
-            </section>
+             </section>
         </div>
     );
-};
+}
 
 export default AboutUsScreen;

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
@@ -7,12 +8,27 @@ import { UserRole } from '../types';
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve namespace issue.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border border-gray-100">
         <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary-light text-primary mb-4">
             {icon}
         </div>
         <h3 className="text-lg font-bold text-secondary mb-2">{title}</h3>
         <p className="text-gray-600 text-sm">{description}</p>
+    </div>
+);
+
+const StepCard: React.FC<{ number: string; title: string; description: string; icon: React.ReactNode }> = ({ number, title, description, icon }) => (
+    <div className="relative bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
+        <div className="w-16 h-16 mx-auto bg-white border-2 border-primary/20 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md group-hover:scale-110 transition-transform relative text-primary">
+            {icon}
+            <div className="absolute -top-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center text-secondary font-bold text-sm border-2 border-white shadow-sm">
+                {number}
+            </div>
+        </div>
+        <h3 className="text-xl font-bold text-secondary mb-3">{title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed">
+            {description}
+        </p>
     </div>
 );
 
@@ -162,6 +178,47 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
+            {/* How It Works Section - REDESIGNED */}
+            <section className="py-24 relative overflow-hidden bg-gray-50">
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="text-center mb-20">
+                        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How It Works</h2>
+                        <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                            Your journey to funding is simple, transparent, and fast.
+                        </p>
+                    </div>
+
+                    <div className="relative">
+                        {/* Connecting Line for Desktop */}
+                        <div className="hidden md:block absolute top-[40px] left-[16%] right-[16%] h-1 bg-gradient-to-r from-primary/20 via-primary/50 to-primary/20 border-t-2 border-dashed border-primary/30 z-0"></div>
+
+                        <div className="grid md:grid-cols-3 gap-12">
+                            <StepCard 
+                                number="1"
+                                title="Submit Your Request"
+                                description="Fill out one simple application. Our smart algorithm matches your profile with verified agents who specialize in your loan type."
+                                icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>}
+                            />
+                            
+                            <StepCard 
+                                number="2"
+                                title="Agents Compete"
+                                description="Sit back as loan agents review your request and bid for your business. You'll receive multiple competitive offers with clear terms."
+                                icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg>}
+                            />
+
+                            <StepCard 
+                                number="3"
+                                title="Choose & Get Funded"
+                                description="Compare interest rates and fees. Select the best offer, digitally sign, and get the funds transferred directly to your bank account."
+                                icon={<svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+                            />
+                        </div>
+                    </div>
+                    {/* Button Removed as per request */}
+                </div>
+            </section>
+
             {/* Apply Now CTA Section */}
             <section id="apply-now" className="relative py-24 bg-secondary overflow-hidden">
                 <div 
@@ -188,32 +245,6 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
-            {/* How It Works Section */}
-            <section className="py-20">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-secondary">How It Works</h2>
-                        <p className="text-gray-500 mt-2">A simple, three-step process to secure your loan.</p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-10">
-                        <div className="text-center">
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mx-auto mb-4 text-2xl font-bold">1</div>
-                            <h3 className="font-bold text-xl text-secondary mb-2">Submit Request</h3>
-                            <p className="text-gray-600">Fill out a simple form detailing your loan needs. It's secure and takes just minutes.</p>
-                        </div>
-                        <div className="text-center">
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mx-auto mb-4 text-2xl font-bold">2</div>
-                            <h3 className="font-bold text-xl text-secondary mb-2">Receive Offers</h3>
-                            <p className="text-gray-600">Verified loan agents review your request and send competitive offers directly to you.</p>
-                        </div>
-                        <div className="text-center">
-                            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mx-auto mb-4 text-2xl font-bold">3</div>
-                            <h3 className="font-bold text-xl text-secondary mb-2">Choose & Fund</h3>
-                            <p className="text-gray-600">Compare offers, select the best one for you, and get your funds transferred quickly.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Features Section */}
             <section className="py-20 bg-white">
