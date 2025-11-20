@@ -86,7 +86,11 @@ const Header: React.FC = () => {
         { title: "Wedding Loans" }
     ];
 
-    const linkPrefix = user ? '/' : '';
+    // Determine if we are on the landing page (and not logged in)
+    const isLandingPage = !user && window.location.pathname === '/';
+    
+    // If user is logged in OR we are not on the root path, prefix links with '/' to ensure we navigate to root first
+    const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
 
     const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium px-4 py-2 rounded-full";
 
@@ -126,7 +130,7 @@ const Header: React.FC = () => {
                             
                             <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
                             <a href="/about-us" className={navLinkClasses}>About Us</a>
-                            <a href="/contact-us" className={navLinkClasses}>Contact Us</a>
+                            <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
                         </nav>
 
                         <div className="flex items-center space-x-4">
